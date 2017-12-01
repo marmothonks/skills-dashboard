@@ -1,0 +1,30 @@
+{
+  "name": "skills-dashboard",
+  "version": "0.0.1",
+  "description": "Demonstrate a rest server to display dev skills",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marmothonks/skills-dashboard.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Marmot Honks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marmothonks/skills-dashboard/issues"
+  },
+  "homepage": "https://github.com/marmothonks/skills-dashboard#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
