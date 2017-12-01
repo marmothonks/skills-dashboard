@@ -4,7 +4,9 @@ const Skill = require('../models/skill');
 
 // get a list of skills from db
 router.get('/skills', (req, res, next) => {
-    res.send({ type: 'GET' });
+    Skill.find().then(function (skills) {
+        res.send(skills);
+    });
 });
 
 // add a new skill to the db
@@ -17,12 +19,20 @@ router.post('/skills', (req, res, next) => {
 
 // update a skill in the db
 router.put('/skills/:id', (req, res, next) => {
-    res.send({ type: 'PUT' });
+    Skill.findByIdAndUpdate({ _id: req.params.id }, req.body)
+        .then(() => {
+            Skill.findOne({ _id: req.params.id }).then((skill) => {
+                res.send(skill);
+            });
+        });
 });
 
 // delete a skill from db
 router.delete('/skills/:id', (req, res, next) => {
-    res.send({ type: 'DELETE' });
+    Skill.findByIdAndRemove({ _id: req.params.id })
+        .then((skill) => {
+            res.send(skill);
+        });
 });
 
 module.exports = router;
