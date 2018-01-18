@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const mongoose = require('mongoose');
-const routes = require('./routes/api');
+const apiRoutes = require('./server/routes/api');
 
 // Set up express app
 const app = express();
@@ -14,7 +15,7 @@ mongoose.Promise = global.Promise;
 app.use(bodyParser.json());
 
 // use the routes
-app.use('/api', routes);
+app.use('/api', apiRoutes);
 
 // error handling middleware
 app.use((err, req, res, next) => {
@@ -22,8 +23,15 @@ app.use((err, req, res, next) => {
     res.status(422).send({ error: err.message });
 });
 
+app.use(express.static(path.join(__dirname, './dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './dist/index.html'))
+  });
+
+
 // listen for requests
 const port = 4000;
 app.listen(process.env.port || port, () => {
-    console.log('now listening for requests on :' + port)
+    console.log('Running on localhost:' + port)
 });

@@ -8,7 +8,7 @@ const SkillSchema = new Schema({
         type: String,
         required: [true, 'Name field is required']
     },
-    score: {
+    level: {
         type: Number,
         default: 0
     }
